@@ -1,17 +1,30 @@
 {
   "version": 2,
   "builds": [
-    { "src": "index.js", "use": "@vercel/node" },
-    { "src": "api/cleanup.js", "use": "@vercel/node" }
+    {
+      "src": "index.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "api/cleanup.js",
+      "use": "@vercel/node"
+    }
   ],
   "routes": [
-    { "src": "/api/cleanup", "dest": "api/cleanup.js" },
-    { "src": "/(.*)", "dest": "index.js" }
+    {
+      "src": "/api/cleanup",
+      "dest": "api/cleanup.js",
+      "methods": ["POST"]
+    },
+    {
+      "src": "/(.*)",
+      "dest": "index.js"
+    }
   ],
   "crons": [
     {
       "path": "/api/cleanup",
-      "schedule": "0 * * * *" // Hourly
+      "schedule": "0 * * * *"
     }
   ]
 }
